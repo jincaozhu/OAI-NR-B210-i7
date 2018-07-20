@@ -148,10 +148,11 @@ else:
     #adb_t.disk_image = GLOBALS.ADB_IMG
 
     # Add a NUC eNB node.
-    enb1 = request.RawPC("enb1")
+    #enb1 = request.RawPC("enb1")
+    enb1 = request.RawPC('enb1', component_id='nuc22')
     if params.FIXED_ENB:
         enb1.component_id = params.FIXED_ENB
-    enb1.hardware_type = GLOBALS.NUC_HWTYPE
+    enb1.hardware_type = "nuc8650"
     enb1.disk_image = GLOBALS.OAI_ENB_IMG
     enb1.Desire( "rf-radiated" if params.TYPE == "ota" else "rf-controlled", 1 )
     connectOAI_DS(enb1, 0)
@@ -159,7 +160,7 @@ else:
     enb1_rue1_rf = enb1.addInterface("rue1_rf")
 
     # Add an OTS (Nexus 5) UE
-    rue1 = request.RawPC("rue1")
+    rue1 = request.RawPC("rue1", component_id="nuc10")
     if params.FIXED_UE:
         rue1.component_id = params.FIXED_UE
     rue1.hardware_type = GLOBALS.NUC_HWTYPE
